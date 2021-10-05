@@ -23,3 +23,13 @@ export class InvalidArgumentError extends Error {
     this.name = "InvalidArgumentError";
   }
 }
+
+/**
+ * Syntax error class.
+ */
+export class SyntaxError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "SyntaxError";
+  }
+}

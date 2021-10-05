@@ -10,7 +10,7 @@
     "build": "tsc --project ./"
   },
   "keywords": [],
-  "author": "Adrián Juárez Monroy",
+  "author": "Adrián Juárez Monroy <comecacahuates@yahoo.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^27.0.2",

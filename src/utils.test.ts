@@ -104,8 +104,8 @@ describe("Evaluate reverse polish notation", () => {
     expect(evaluateRpn("3")).toBe(3);
   });
 
-  it("Evaluate 3 4 +", () => {
-    expect(evaluateRpn("3 -4 +")).toBe(3 + -4);
+  it("Evaluate 3          -4           +", () => {
+    expect(evaluateRpn("3          -4           +")).toBe(3 + -4);
   });
 
   it("Evaluate 5 4 -", () => {

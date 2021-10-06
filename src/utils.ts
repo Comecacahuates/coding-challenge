@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from "./errors";
+import { InvalidArgumentError, SyntaxError } from "./errors";
 
 /**
  * Masks the first and last four digits of a credit card number
@@ -105,7 +105,7 @@ export function evaluateRpn(rpn: string) {
   const popOperands = (stack: number[], numOperands: number) => {
     // If there are not enough operands
     if (stack.length < numOperands) {
-      throw new SyntaxError("RPN expression is not valid");
+      throw new SyntaxError(`'${rpn}' is not a valid RPN expression`);
     }
     const operands = [];
     for (let i = 0; i < numOperands; i++) {
@@ -132,14 +132,14 @@ export function evaluateRpn(rpn: string) {
       stack.push(operationResult);
       // If symbol is neither operand nor operator
     } else {
-      throw new SyntaxError("RPN expression is not valid");
+      throw new SyntaxError(`'${rpn}' is not a valid RPN expression`);
     }
     return stack;
   }, []);
 
   // If the expression is correct, there must be a single value in the stack
   if (stack.length !== 1) {
-    throw new SyntaxError("RPN expression is not valid");
+    throw new SyntaxError(`'${rpn}' is not a valid RPN expression`);
   }
 
   return stack[0];

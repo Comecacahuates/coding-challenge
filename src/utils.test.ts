@@ -1,5 +1,5 @@
 import { evaluateRpn, maskify, numberToOrdinal } from "./utils";
-import { InvalidArgumentError } from "./errors";
+import { InvalidArgumentError, SyntaxError } from "./errors";
 
 describe("Mask credit card number", () => {
   it("Mask '123456'", () => {

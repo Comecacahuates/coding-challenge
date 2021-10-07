@@ -1,4 +1,4 @@
-import { evaluateRpn, maskify, numberToOrdinal } from "./utils";
+import { maskify, numberToOrdinal } from "./utils";
 import { InvalidArgumentError, SyntaxError } from "./errors";
 
 describe("Mask credit card number", () => {
@@ -96,65 +96,5 @@ describe("Ordinal numbers", () => {
     expect(() => {
       numberToOrdinal(-10);
     }).toThrow(InvalidArgumentError);
-  });
-});
-
-describe("Evaluate reverse polish notation", () => {
-  it("Evaluate 3", () => {
-    expect(evaluateRpn("3")).toBe(3);
-  });
-
-  it("Evaluate 3          -4           +", () => {
-    expect(evaluateRpn("3          -4           +")).toBe(3 + -4);
-  });
-
-  it("Evaluate 5 4 -", () => {
-    expect(evaluateRpn("5 4 -")).toBe(5 - 4);
-  });
-
-  it("Evaluate 3 2 *", () => {
-    expect(evaluateRpn("3 2 *")).toBe(3 * 2);
-  });
-
-  it("Evaluate 10 5 /", () => {
-    expect(evaluateRpn("10 5 /")).toBe(10 / 5);
-  });
-
-  it("Evaluate 2 3 ^", () => {
-    expect(evaluateRpn("2 3 ^")).toBe(Math.pow(2, 3));
-  });
-
-  it("Evaluate 16 sqrt", () => {
-    expect(evaluateRpn("16 sqrt")).toBe(Math.sqrt(16));
-  });
-
-  it("Evaluate 9 5 + 2 -", () => {
-    expect(evaluateRpn("9 5 + 2 -")).toBe(9 + 5 - 2);
-  });
-
-  it("Evaluate 4 4 * sqrt", () => {
-    expect(evaluateRpn("4 4 * sqrt")).toBe(Math.sqrt(4 * 4));
-  });
-
-  it("Evaluate 100 50 - 25 63 * +", () => {
-    expect(evaluateRpn("100 50 - 25 63 * +")).toBe(100 - 50 + 25 * 63);
-  });
-
-  it("Evaluate 1 a + 5 2 - /", () => {
-    expect(() => {
-      evaluateRpn("1 a +");
-    }).toThrow(SyntaxError);
-  });
-
-  it("Evaluate a b + c d - *", () => {
-    expect(() => {
-      evaluateRpn("a b + c d - *");
-    }).toThrow(SyntaxError);
-  });
-
-  it("Evaluate 1 1 + +", () => {
-    expect(() => {
-      evaluateRpn("1 1 + +");
-    }).toThrow(SyntaxError);
   });
 });

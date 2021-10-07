@@ -1,4 +1,5 @@
-import { maskify, numberToOrdinal, evaluateRpn } from "./utils";
+import { maskify, numberToOrdinal } from "./utils";
+import { evaluateRpn } from "./math";
 import { InvalidArgumentError, SyntaxError } from "./errors";
 
 function maskifyExample() {

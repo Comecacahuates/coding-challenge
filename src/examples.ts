@@ -1,7 +1,7 @@
 import { maskify } from "./creditcard";
 import { numberToOrdinal } from "./utils";
 import { evaluateRpn } from "./math";
-import { InvalidArgumentError, SyntaxError } from "./errors";
+import { InvalidArgumentError } from "./errors";
 
 function maskifyExample() {
   console.log("\nMaskify card number");

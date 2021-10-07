@@ -1,35 +1,10 @@
 /**
- * Error class.
- *
- * Used because Jest `toThrow` matcher fails with classes
- * derived from the built-in `Error` class.
- */
-export class Error {
-  message: string;
-  name: string;
-
-  constructor(message: string) {
-    this.message = message;
-    this.name = "Error";
-  }
-}
-
-/**
- * Invalid argument error class.
+ * Invalid argument error
  */
 export class InvalidArgumentError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "InvalidArgumentError";
-  }
-}
-
-/**
- * Syntax error class.
- */
-export class SyntaxError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "SyntaxError";
+    Object.setPrototypeOf(this, InvalidArgumentError.prototype);
   }
 }

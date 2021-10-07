@@ -1,4 +1,5 @@
-import { maskify, numberToOrdinal } from "./utils";
+import { maskify } from "./creditcard";
+import { numberToOrdinal } from "./utils";
 import { evaluateRpn } from "./math";
 import { InvalidArgumentError, SyntaxError } from "./errors";
 
@@ -10,13 +11,13 @@ function maskifyExample() {
 
   try {
     cardNumber = "1234567891234567";
-    maskedCardNumber = maskify(cardNumber);
+    maskedCardNumber = maskify(cardNumber, 7, 1, 4);
     console.log(`${cardNumber} masked is ${maskedCardNumber}`);
   } catch (error) {}
 
   try {
     cardNumber = "12a45a78a123a567";
-    maskedCardNumber = maskify(cardNumber);
+    maskedCardNumber = maskify(cardNumber, 7, 1, 4);
     console.log(`${cardNumber} masked is ${maskedCardNumber}`);
   } catch (error) {
     if (error instanceof InvalidArgumentError) {

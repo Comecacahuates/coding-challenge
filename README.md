@@ -7,12 +7,12 @@ The file `src/index.ts` contains some examples of the usage of these functions.
 
 ## Functions
 
-### `maskify(cardNumber: string): string`
+### `maskify(cardNumber: string, minLength: number, firstVisible: number, lastVisible: number): string`
 
 Receives a credit card number as a string and returns it obfuscated:
-if its length is greater than or equal to 7, all digits are replaced by `x`
-except the first one and the last four.
-Otherwise, it returns the card number as is.
+if its length is greater than or equal `minLength`,
+all digits are replaced by `x` except the first (`firstVisible`)
+and the last (`lastVisible`). Otherwise, it returns the card number as is.
 
 ### `numberToOrdinal(n: number): string`
 

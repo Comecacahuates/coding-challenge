@@ -1,18 +1,22 @@
 import { InvalidArgumentError } from "./errors";
 
 /**
- * Convert a number to its correponding ordinal in english.
- * @param n Number to convert
+ * Convert a cardinal number to its correponding ordinal in english.
+ * @param cardinal Number to convert
  */
-export function numberToOrdinal(n: number) {
-  if (n < 0) {
+export function numberToOrdinal(cardinal: number): string {
+  if (cardinal < 0) {
     throw new InvalidArgumentError(
-      "Argument has to be greater than or equal to 0",
+      "Argument must be greater than or equal to 0",
     );
   }
 
-  // Patterns for ordinal numbers
-  const ordinals = [
+  if (cardinal % 1 !== 0) {
+    throw new InvalidArgumentError("Argument must be integer");
+  }
+
+  type ordinal = { pattern: RegExp; suffix: string };
+  const ordinals: ordinal[] = [
     {
       pattern: /^0$/, // 0
       suffix: "",
@@ -35,21 +39,9 @@ export function numberToOrdinal(n: number) {
     },
   ];
 
-  // Keep only the integer part
-  n = parseInt(n.toString());
+  const firstMatchingOrdinal = ordinals.filter((ordinal) =>
+    ordinal.pattern.test(cardinal.toString()),
+  )[0];
 
-  // Test number against each pattern
-  const suffix = ordinals.reduce((suffix: string | null, ordinal) => {
-    // If number already matched a pattern, return the same suffix
-    if (suffix !== null) {
-      return suffix;
-    }
-    // If number matches the pattern, return the correspondig suffix
-    if (ordinal.pattern.test(n.toString())) {
-      return ordinal.suffix;
-    }
-    return null;
-  }, null);
-
-  return `${n}${suffix}`;
+  return `${cardinal}${firstMatchingOrdinal.suffix}`;
 }

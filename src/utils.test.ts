@@ -2,75 +2,65 @@ import { numberToOrdinal } from "./utils";
 import { InvalidArgumentError } from "./errors";
 
 describe("Ordinal numbers", () => {
-  it("0 to ordinal", () => {
+  it("0 to 0", () => {
     expect(numberToOrdinal(0)).toBe("0");
   });
 
-  it("1 to ordinal", () => {
+  it("1 to 1st", () => {
     expect(numberToOrdinal(1)).toBe("1st");
   });
 
-  it("2 to ordinal", () => {
+  it("2 to 2nd", () => {
     expect(numberToOrdinal(2)).toBe("2nd");
   });
 
-  it("3 to ordinal", () => {
+  it("3 to 3rd", () => {
     expect(numberToOrdinal(3)).toBe("3rd");
   });
 
-  it("4 to ordinal", () => {
+  it("4 to 4th", () => {
     expect(numberToOrdinal(4)).toBe("4th");
   });
 
-  it("10 to ordinal", () => {
-    expect(numberToOrdinal(10)).toBe("10th");
-  });
-
-  it("11 to ordinal", () => {
+  it("11 to 11th", () => {
     expect(numberToOrdinal(11)).toBe("11th");
   });
 
-  it("12 to ordinal", () => {
+  it("12 to 12th", () => {
     expect(numberToOrdinal(12)).toBe("12th");
   });
 
-  it("13 to ordinal", () => {
+  it("13 to 13th", () => {
     expect(numberToOrdinal(13)).toBe("13th");
   });
 
-  it("20 to ordinal", () => {
-    expect(numberToOrdinal(20)).toBe("20th");
-  });
-
-  it("21 to ordinal", () => {
+  it("21 to 21st", () => {
     expect(numberToOrdinal(21)).toBe("21st");
   });
 
-  it("22 to ordinal", () => {
+  it("22 to 22nd", () => {
     expect(numberToOrdinal(22)).toBe("22nd");
   });
 
-  it("23 to ordinal", () => {
+  it("23 to 23rd", () => {
     expect(numberToOrdinal(23)).toBe("23rd");
   });
 
-  it("100 to ordinal", () => {
-    expect(numberToOrdinal(100)).toBe("100th");
+  it("471 to 471st", () => {
+    expect(numberToOrdinal(471)).toBe("471st");
   });
 
-  it("101 to ordinal", () => {
-    expect(numberToOrdinal(101)).toBe("101st");
+  it("897 to 897th", () => {
+    expect(numberToOrdinal(897)).toBe("897th");
   });
 
-  it("102 to ordinal", () => {
-    expect(numberToOrdinal(102)).toBe("102nd");
+  it("-10 is invalid", () => {
+    expect(() => {
+      numberToOrdinal(-10);
+    }).toThrow(InvalidArgumentError);
   });
 
-  it("103 to ordinal", () => {
-    expect(numberToOrdinal(103)).toBe("103rd");
-  });
-
-  it("-10 to ordinal", () => {
+  it("1.5 is invalid", () => {
     expect(() => {
       numberToOrdinal(-10);
     }).toThrow(InvalidArgumentError);

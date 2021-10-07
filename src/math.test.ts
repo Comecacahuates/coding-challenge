@@ -1,6 +1,6 @@
 import { evaluateRpn } from "./math";
 
-describe("Evaluate reverse polish notation", () => {
+describe("Evaluate reverse polish notation expressions", () => {
   it("Sum and difference: '5 2 + -10 -'", () => {
     expect(evaluateRpn("5 2 + -10 -")).toBe(5 + 2 - -10);
   });
@@ -23,6 +23,12 @@ describe("Evaluate reverse polish notation", () => {
     expect(evaluateRpn("25.7 5.8 / 18.4 + 16.7 sqrt - 4.2 * 3.3 ^")).toBe(
       Math.pow((25.7 / 5.8 + 18.4 - Math.sqrt(16.7)) * 4.2, 3.3),
     );
+  });
+
+  it("Empty string", () => {
+    expect(() => {
+      evaluateRpn("");
+    }).toThrow(SyntaxError);
   });
 
   it("Invalid symbols: '1 x + 2 d - *'", () => {

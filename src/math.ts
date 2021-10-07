@@ -3,8 +3,11 @@
  * @param rpn Expression to evaluate
  * @returns Result of the evaluation
  */
-export function evaluateRpn(rpn: string) {
-  // Valid operators
+export function evaluateRpn(rpn: string): number {
+  if (/^\s+$/.test(rpn)) {
+    throw new SyntaxError("RPN expression is empty");
+  }
+
   const operators: Record<string, Function> = {
     "+": (a: number, b: number) => a + b,
     "-": (a: number, b: number) => a - b,
@@ -14,16 +17,18 @@ export function evaluateRpn(rpn: string) {
     sqrt: (a: number) => Math.sqrt(a),
   };
 
-  const symbols = rpn.split(/\s+/); // List of symbols in RPN expression
+  const symbols = rpn.split(/\s+/);
   const toOperand = (symbol: string) => parseFloat(symbol) || null;
   const toOperator = (symbol: string) => operators[symbol] || null;
 
-  // Pops operands from stack
+  // Pops a number of operands from a stack
   const popOperands = (stack: number[], numOperands: number) => {
-    // If there are not enough operands
     if (stack.length < numOperands) {
-      throw new SyntaxError(`'${rpn}' is not a valid RPN expression`);
+      throw new SyntaxError(
+        `'${rpn}' is not a valid RPN expression: Not enough operands`,
+      );
     }
+
     const operands = [];
     for (let i = 0; i < numOperands; i++) {
       operands.unshift(stack.pop());
@@ -31,32 +36,37 @@ export function evaluateRpn(rpn: string) {
     return operands;
   };
 
-  // Process each symbol in the expression
   const stack = symbols.reduce((stack: number[], symbol: string) => {
-    // If symbol is an operand
     const operand = toOperand(symbol);
     if (operand) {
       stack.push(operand);
       return stack;
     }
 
-    // If symbol is an operator
     const operator = toOperator(symbol);
     if (operator) {
-      // Pop from the stack the operands needed for the operator and evaluate it
-      const operands = popOperands(stack, operator.length);
-      const operationResult = operator(...operands);
-      stack.push(operationResult);
-      // If symbol is neither operand nor operator
+      try {
+        const operands = popOperands(stack, operator.length);
+        const operationResult = operator(...operands);
+        stack.push(operationResult);
+      } catch (error) {
+        throw new SyntaxError(
+          `'${rpn}' is not a valid RPN expression: Not enough operands for '${symbol}' operator`,
+        );
+      }
     } else {
-      throw new SyntaxError(`'${rpn}' is not a valid RPN expression`);
+      throw new SyntaxError(
+        `${rpn}' is not a valid RPN expression: '${symbol}' is neither an operand nor an operator`,
+      );
     }
     return stack;
   }, []);
 
   // If the expression is correct, there must be a single value in the stack
   if (stack.length !== 1) {
-    throw new SyntaxError(`'${rpn}' is not a valid RPN expression`);
+    throw new SyntaxError(
+      `'${rpn}' is not a valid RPN expression: Not enough operators`,
+    );
   }
 
   return stack[0];

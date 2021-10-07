@@ -9,17 +9,17 @@
  */
 export function maskify(
   cardNumber: string,
-  minLength: number,
-  firstVisible: number,
-  lastVisible: number,
+  minLength: number = 7,
+  firstVisible: number = 1,
+  lastVisible: number = 4,
 ): string {
   const toBeMasked = (index: number) =>
     cardNumber.length >= minLength &&
     index > firstVisible - 1 &&
     index < cardNumber.length - lastVisible;
 
-  return cardNumber
-    .split("")
-    .map((digit: string, i: number) => (toBeMasked(i) ? "x" : digit))
-    .join("");
+  const maskDigit = (digit: string, i: number) =>
+    toBeMasked(i) ? "x" : digit;
+
+  return cardNumber.split("").map(maskDigit).join("");
 }

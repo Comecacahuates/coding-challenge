@@ -39,9 +39,9 @@ export function numberToOrdinal(cardinal: number): string {
     },
   ];
 
-  const firstMatchingOrdinal = ordinals.filter((ordinal) =>
+  const matchingOrdinal = ordinals.find((ordinal) =>
     ordinal.pattern.test(cardinal.toString()),
-  )[0];
+  );
 
-  return `${cardinal}${firstMatchingOrdinal.suffix}`;
+  return `${cardinal}${matchingOrdinal!.suffix}`;
 }

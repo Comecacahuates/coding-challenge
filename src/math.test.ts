@@ -1,6 +1,10 @@
 import { evaluateRpn } from "./math";
 
 describe("Evaluate reverse polish notation expressions", () => {
+  it("Test", () => {
+    expect(evaluateRpn("2 9 5 + -")).toBe(-12);
+  });
+
   it("Sum and difference: '5 2 + -10 -'", () => {
     expect(evaluateRpn("5 2 + -10 -")).toBe(5 + 2 - -10);
   });

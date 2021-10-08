@@ -1,10 +1,32 @@
 /**
  * Evaluates a reverse polish notation expression.
+ *
+ * Supported operators:
+ *
+ * - `+` - sum
+ * - `-` - difference
+ * - `*` - miltiplication
+ * - `/` - division
+ * - `^` - power
+ * - `sqrt` - square root
+ *
+ * Throws {@link SyntaxError} if the expression is not valid or empty.
+ *
+ * Examples:
+ *
+ * ```typescript
+ * const result = evaluateRpn("2 5 + 10 *"); // Result is 70
+ * ```
+ *
+ * ```typescript
+ * const result = evaluateRpn("4 2 * 4 4 + + sqrt 2 /"); // Result is 2
+ * ```
+ *
  * @param rpn Expression to evaluate
  * @returns Result of the evaluation
  */
 export function evaluateRpn(rpn: string): number {
-  if (/^\s+$/.test(rpn)) {
+  if (/^\s*$/.test(rpn)) {
     throw new SyntaxError("RPN expression is empty");
   }
 

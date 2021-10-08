@@ -1,6 +1,17 @@
 /**
  * Masks the first and last digits of a credit card number
  * if its length is at least `minLength`.
+ *
+ * **Examples:**
+ *
+ * ```typescript
+ * const maskedCardNumber = maskify("12345") // Result is "12345"
+ * ```
+ *
+ * ```typescript
+ * const maskedCardNumber = maskify("1234567812345678") // Result is "1***********5678"
+ * ```
+ *
  * @param cardNumber Credit card number
  * @param minLength Minimum length to obfuscate the card number
  * @param firstVisible Number of visible digits at the start

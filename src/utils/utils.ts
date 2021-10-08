@@ -2,7 +2,17 @@ import { InvalidArgumentError } from "../errors";
 
 /**
  * Convert a cardinal number to its correponding ordinal in english.
+ *
+ * Throws {@link InvalidArgumentError} if `cardinal` is negative of not integer.
+ *
+ * **Example:**
+ *
+ * ```typescript
+ * const ordinal = numberToOrdinal(10); // Result is "10th"
+ * ```
+ *
  * @param cardinal Number to convert
+ * @returns Cardinal number
  */
 export function numberToOrdinal(cardinal: number): string {
   if (cardinal < 0) {

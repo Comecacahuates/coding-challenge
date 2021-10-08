@@ -68,7 +68,8 @@ export function evaluateRpn(rpn: string): number {
     const operator = toOperator(symbol);
     if (operator) {
       try {
-        const operands = popOperands(stack, operator.length);
+        const numOperands = operator.length;
+        const operands = popOperands(stack, numOperands);
         const operationResult = operator(...operands);
         stack.push(operationResult);
       } catch (error) {

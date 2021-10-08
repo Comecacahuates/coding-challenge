@@ -18,8 +18,7 @@ export function maskify(
     index > firstVisible - 1 &&
     index < cardNumber.length - lastVisible;
 
-  const maskDigit = (digit: string, i: number) =>
-    toBeMasked(i) ? "x" : digit;
+  const maskDigit = (digit: string, i: number) => (toBeMasked(i) ? "x" : digit);
 
   return cardNumber.split("").map(maskDigit).join("");
 }

@@ -1,3 +1,3 @@
-console.log("Dummy main program");
-
-// TODO Export functions
+export { maskify } from "./creditcard";
+export { numberToOrdinal } from "./utils";
+export { evaluateRpn } from "./math";

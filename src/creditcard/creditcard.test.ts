@@ -1,4 +1,4 @@
-import { maskify } from "./creditcard";
+import { maskify } from "./";
 
 describe("Mask credit card number: '123456'", () => {
   it("Card number of length 6 '123456'", () => {

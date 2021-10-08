@@ -1,0 +1,1 @@
+export { evaluateRpn } from "./math";

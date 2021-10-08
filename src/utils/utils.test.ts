@@ -1,5 +1,5 @@
-import { numberToOrdinal } from "./utils";
-import { InvalidArgumentError } from "./errors";
+import { numberToOrdinal } from "./";
+import { InvalidArgumentError } from "../errors";
 
 describe("Ordinal numbers", () => {
   it("0 to 0", () => {

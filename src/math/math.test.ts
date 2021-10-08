@@ -1,4 +1,4 @@
-import { evaluateRpn } from "./math";
+import { evaluateRpn } from "./";
 
 describe("Evaluate reverse polish notation expressions", () => {
   it("Test", () => {

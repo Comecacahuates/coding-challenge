@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from "./errors";
+import { InvalidArgumentError } from "../errors";
 
 /**
  * Convert a cardinal number to its correponding ordinal in english.

@@ -1,6 +1,8 @@
 /**
- * Masks the first and last digits of a credit card number
- * if its length is at least `minLength`.
+ * Masks the digits of a credit card number if its length is
+ * at least `minLength` except the first and last digits
+ * indicated by `firstVisible` and `lastVisible`
+ *
  *
  * **Examples:**
  *
@@ -24,10 +26,12 @@ export function maskify(
   firstVisible: number = 1,
   lastVisible: number = 4,
 ): string {
+  if (cardNumber.length <= minLength) {
+    return cardNumber;
+  }
+
   const toBeMasked = (index: number) =>
-    cardNumber.length >= minLength &&
-    index > firstVisible - 1 &&
-    index < cardNumber.length - lastVisible;
+    index > firstVisible - 1 && index < cardNumber.length - lastVisible;
 
   const maskDigit = (digit: string, i: number) => (toBeMasked(i) ? "x" : digit);
 

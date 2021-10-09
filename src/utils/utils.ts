@@ -12,7 +12,7 @@ import { InvalidArgumentError } from "../errors";
  * ```
  *
  * @param cardinal Number to convert
- * @returns Cardinal number
+ * @returns Ordinal number
  */
 export function numberToOrdinal(cardinal: number): string {
   if (cardinal < 0) {

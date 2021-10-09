@@ -12,11 +12,7 @@
  *
  * Throws {@link SyntaxError} if the expression is not valid or empty.
  *
- * Examples:
- *
- * ```typescript
- * const result = evaluateRpn("2 5 + 10 *"); // Result is 70
- * ```
+ * **Example:**
  *
  * ```typescript
  * const result = evaluateRpn("4 2 * 4 4 + + sqrt 2 /"); // Result is 2
@@ -39,7 +35,7 @@ export function evaluateRpn(rpn: string): number {
     sqrt: (a: number) => Math.sqrt(a),
   };
 
-  const symbols = rpn.split(/\s+/);
+  const symbols = rpn.trim().split(/\s+/);
   const toOperand = (symbol: string) => parseFloat(symbol) || null;
   const toOperator = (symbol: string) => operators[symbol] || null;
 
